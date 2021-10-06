@@ -12,7 +12,9 @@
 #~ ifeq ($(TARGET_PC_BUILD),true)
 
 LOCAL_PATH := $(call my-dir)
-#~ ifneq ($(USE_SMARTDOCK),true)
+
+ifeq ($(USE_TASKBAR_UI),true)
+
 LOCAL_APPS := $(subst $(LOCAL_PATH)/,,$(wildcard $(LOCAL_PATH)/*$(COMMON_ANDROID_PACKAGE_SUFFIX)))
 
 define include-app
@@ -46,7 +48,7 @@ $(foreach a,$(LOCAL_APPS),$(eval $(call include-app,$(a))))
 #copy stuff
     $(shell cp $(LOCAL_PATH)/permissions/*.xml `pwd`/$(TARGET_OUT)/etc/permissions/)
 
-#~ else
-#~ include $(call all-subdir-makefiles)
+else
+include $(call all-subdir-makefiles)
 
-#~ endif
+endif
