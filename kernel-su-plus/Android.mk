@@ -12,7 +12,7 @@
 #~ ifeq ($(TARGET_PC_BUILD),true)
 
 LOCAL_PATH := $(call my-dir)
-ifneq ($(USE_KERNEL_SU_PLUS),true)
+ifeq ($(USE_KERNEL_SU_PLUS),true)
 LOCAL_APPS := $(subst $(LOCAL_PATH)/,,$(wildcard $(LOCAL_PATH)/*$(COMMON_ANDROID_PACKAGE_SUFFIX)))
 
 define include-app
