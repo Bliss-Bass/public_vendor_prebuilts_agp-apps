@@ -96,3 +96,9 @@ endif
 
 endif
 
+ifeq ($(USE_ANDROID_AUTO),true)
+PRODUCT_PACKAGES += \
+    AndroidAuto
+
+endif
+
