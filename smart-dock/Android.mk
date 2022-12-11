@@ -43,11 +43,6 @@ endef
 
 $(foreach a,$(LOCAL_APPS),$(eval $(call include-app,$(a))))
 
-#create a directory in /system/
-    $(shell mkdir -p $(TARGET_OUT)/etc/permissions/)
-#copy stuff
-    $(shell cp $(LOCAL_PATH)/permissions/*.xml `pwd`/$(TARGET_OUT)/etc/permissions/)
-
 else
 include $(call all-subdir-makefiles)
 
