@@ -10,7 +10,8 @@
 #
 
 LOCAL_PATH := $(call my-dir)
-ifneq ("$(wildcard vendor/foss/bin/*)","")
+# ifneq ("$(wildcard vendor/foss/bin/*)","")
+ifeq ("$(USE_FOSSAPPS)","true")
 
 LOCAL_APPS := $(subst $(LOCAL_PATH)/,,$(wildcard $(LOCAL_PATH)/*$(COMMON_ANDROID_PACKAGE_SUFFIX)))
 
