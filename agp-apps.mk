@@ -20,8 +20,14 @@ PRODUCT_COPY_FILES += \
 endif
 
 ifeq ($(USE_BLISS_GARLIC_LAUNCHER),true)
+# Private permissions
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/garlic_launcher/permissions/com.sagiadinos.garlic.launcher-permissions.xml:system/etc/permissions/com.sagiadinos.garlic.launcher-permissions.xml
+
+# Default permissions
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilts/etc/default-permissions/default_permissions_com.sagiadinos.garlic.player.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/default-permissions/default_permissions_com.sagiadinos.garlic.player.xml
+
 endif
 
 ifeq ($(USE_BLISS_GAME_MODE_LAUNCHER),true)
