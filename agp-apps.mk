@@ -22,11 +22,8 @@ endif
 ifeq ($(USE_BLISS_GARLIC_LAUNCHER),true)
 # Private permissions
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/garlic_launcher/permissions/com.sagiadinos.garlic.launcher-permissions.xml:system/etc/permissions/com.sagiadinos.garlic.launcher-permissions.xml
-
-# Default permissions
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilts/etc/default-permissions/default_permissions_com.sagiadinos.garlic.player.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/default-permissions/default_permissions_com.sagiadinos.garlic.player.xml
+    $(LOCAL_PATH)/garlic_launcher/permissions/com.sagiadinos.garlic.launcher-permissions.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.sagiadinos.garlic.launcher-permissions.xml \
+    $(LOCAL_PATH)/garlic_player/permissions/com.sagiadinos.garlic.player-permissions.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.sagiadinos.garlic.player-permissions.xml
 
 endif
 

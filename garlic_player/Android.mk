@@ -1,5 +1,6 @@
 #
-# Copyright (C) 2011-2015 The Android-x86 Open Source Project
+# 2021 Bliss Roms - Adapted from Android-x86 Project
+# Original Copyright (C) 2011-2015 The Android-x86 Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -8,9 +9,8 @@
 #      http://www.apache.org/licenses/LICENSE-2.0
 #
 
-
 LOCAL_PATH := $(call my-dir)
-
+# ifneq ("$(wildcard vendor/foss/bin/*)","")
 ifeq ("$(USE_BLISS_GARLIC_LAUNCHER)","true")
 
 LOCAL_APPS := $(subst $(LOCAL_PATH)/,,$(wildcard $(LOCAL_PATH)/*$(COMMON_ANDROID_PACKAGE_SUFFIX)))
@@ -22,13 +22,14 @@ LOCAL_LIBS := $$(shell zipinfo -1 $$(LOCAL_PATH)/$(1) | grep ^lib/ | grep -v /$$
 
 LOCAL_MODULE := $$(basename $(1))
 LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_SUFFIX := $$(suffix $(1))
+LOCAL_MODULE_PATH := $(PRODUCT_OUT)/$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app
 LOCAL_BUILT_MODULE_STEM := package.apk
 LOCAL_CERTIFICATE := PRESIGNED
 LOCAL_SRC_FILES := $(1)
+LOCAL_PRIVILEGED_MODULE := true
 LOCAL_DEX_PREOPT := false
-LOCAL_MODULE_RELATIVE_PATH := user_app
 LOCAL_MODULE_TARGET_ARCH := $$(call get-prebuilt-src-arch,$$(notdir $$(patsubst %/,%,$$(dir $$(LOCAL_LIBS)))))
 LOCAL_PREBUILT_JNI_LIBS := $$(addprefix @,$$(filter lib/$$(LOCAL_MODULE_TARGET_ARCH)/%,$$(LOCAL_LIBS)))
 #$$(info $$(LOCAL_MODULE) LOCAL_MODULE_TARGET_ARCH=$$(LOCAL_MODULE_TARGET_ARCH))
@@ -42,5 +43,5 @@ $(foreach a,$(LOCAL_APPS),$(eval $(call include-app,$(a))))
 
 else
 include $(call all-subdir-makefiles)
-# END Minimal added packages
+
 endif
