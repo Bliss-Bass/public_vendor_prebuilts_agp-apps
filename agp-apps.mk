@@ -49,26 +49,49 @@ endif
 
 ifeq ($(USE_PER_DISPLAY_FOCUS),true)
 
-ifeq ($(USE_PER_DISPLAY_FOCUS_ZQY),true)
+PRODUCT_PACKAGES += \
+    MultiDisplay
+
+ifeq ($(USE_PER_DISPLAY_FOCUS_ZQY_IME),true)
 
 PRODUCT_PACKAGES += \
-    zqyMultiClientInputMethod \
-    MultiDisplay
+    zqyMultiClientInputMethod
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.debug.multi_client_ime=com.zqy.multidisplayinput/.MultiClientInputMethod \
     ro.sys.multi_client_ime=com.zqy.multidisplayinput/.MultiClientInputMethod
-
 else
 
+    nozqyime=true
+
+endif
+
+ifeq ($(USE_PER_DISPLAY_FOCUS_IME),true)
 PRODUCT_PACKAGES += \
-    MultiClientInputMethod \
-    MultiDisplay
+    MultiClientInputMethod
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.debug.multi_client_ime=com.example.android.multiclientinputmethod/.MultiClientInputMethod \
     ro.sys.multi_client_ime=com.example.android.multiclientinputmethod/.MultiClientInputMethod
 
+else
+
+    nomcime=true
+
+endif
+
+# if nozqyime and nomcime are true, then we have no ime
+ifeq ($(nozqyime),true)
+ifeq ($(nomcime),true)
+
+# PRODUCT_PROPERTY_OVERRIDES += \
+#     persist.debug.multi_client_ime=com.android.inputmethod.latin/.LatinIME \
+#     ro.sys.multi_client_ime=com.android.inputmethod.latin/.LatinIME
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.boot.bliss.force_ime_on_all_displays=true
+
+endif
 endif
 
 endif
