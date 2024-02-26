@@ -18,6 +18,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/smart-dock/permissions/cu.axel.smartdock-permissions.xml:system/etc/permissions/cu.axel.smartdock-permissions.xml
 endif
 
+ifeq ($(USE_SMARTDOCK_B),true)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/smart-dock-b/permissions/cu.axel.smartdock-permissions.xml:system/etc/permissions/cu.axel.smartdock-permissions.xml
+endif
+
 ifeq ($(USE_BLISS_RESTRICTED_LAUNCHER),true)
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/restricted_app/permissions/com.bliss.restrictedlauncher-permissions.xml:system/etc/permissions/com.bliss.restrictedlauncher-permissions.xml
