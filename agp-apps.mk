@@ -41,6 +41,12 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/crosslauncher/permissions/id.psw.vshlauncher-permissions.xml:system/etc/permissions/id.psw.vshlauncher-permissions.xml
 endif
 
+ifeq ($(USE_POS_TERMINAL_APP),true)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/pos-terminal/permissions/at.smartlab.tshop-privapp-permissions.xml:system/etc/permissions/at.smartlab.tshop-privapp-permissions.xml \
+    $(LOCAL_PATH)/pos-terminal/permissions/at.smartlab.tshop.kdisplay-generated-permissions.xml:system/etc/permissions/at.smartlab.tshop.kdisplay-generated-permissions.xml
+endif
+
 ifeq ($(USE_TASKBAR_UI),true)
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/taskbar/permissions/privapp-permissions-com.farmerbb.taskbar.support.xml:system/etc/permissions/privapp-permissions-com.farmerbb.taskbar.support.xml \

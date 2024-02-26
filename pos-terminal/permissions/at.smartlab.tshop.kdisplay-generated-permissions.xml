@@ -1,0 +1,8 @@
+<permissions>
+
+	<privapp-permissions package="at.smartlab.tshop.kdisplay">
+		<permission name="android.permission.INTERNET"/>
+    </privapp-permissions>
+
+</permissions>
+
