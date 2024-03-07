@@ -46,6 +46,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/crosslauncher/permissions/id.psw.vshlauncher-permissions.xml:system/etc/permissions/id.psw.vshlauncher-permissions.xml
 endif
 
+ifeq ($(USE_BLISS_TV_LAUNCHER),true)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/tv-launcher/permissions/nl.ndat.tvlauncher-permissions.xml:system/etc/permissions/nl.ndat.tvlauncher-permissions.xml
+endif
+
 ifeq ($(USE_POS_TERMINAL_APP),true)
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/pos-terminal/permissions/at.smartlab.tshop-privapp-permissions.xml:system/etc/permissions/at.smartlab.tshop-privapp-permissions.xml \

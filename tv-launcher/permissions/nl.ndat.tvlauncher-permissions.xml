@@ -1,0 +1,14 @@
+<permissions>
+
+	<privapp-permissions package="nl.ndat.tvlauncher">
+		<permission name="android.permission.INTERNET"/>
+		<permission name="android.permission.READ_EXTERNAL_STORAGE"/>
+		<permission name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+		<permission name="android.permission.READ_TV_LISTINGS"/>
+		<permission name="com.android.providers.tv.permission.WRITE_EPG_DATA"/>
+		<permission name="com.android.providers.tv.permission.READ_EPG_DATA"/>
+		<permission name="nl.ndat.tvlauncher.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"/>
+    </privapp-permissions>
+
+</permissions>
+
