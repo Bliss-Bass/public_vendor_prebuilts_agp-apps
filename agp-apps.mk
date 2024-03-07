@@ -63,6 +63,18 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/taskbar/permissions/privapp-permissions-com.farmerbb.taskbar.xml:system/etc/permissions/privapp-permissions-com.farmerbb.taskbar.xml
 endif
 
+# Gboard options
+ifeq ($(USE_GBOARD_PREBUILT),true)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/gboard/permissions/com.google.android.inputmethod.latin-permissions.xml:system/etc/permissions/com.google.android.inputmethod.latin-permissions.xml
+endif
+
+ifeq ($(USE_GBOARD_LITE_PREBUILT),true)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/gboard_lite/permissions/com.google.android.inputmethod.latin-permissions.xml:system/etc/permissions/com.google.android.inputmethod.latin-permissions.xml
+endif
+
+# per display focus options
 ifeq ($(USE_PER_DISPLAY_FOCUS),true)
 
 PRODUCT_PACKAGES += \

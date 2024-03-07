@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+
+    <privapp-permissions package="com.google.android.inputmethod.latin">
+		<permission name="android.permission.ACCESS_NETWORK_STATE"/>
+		<permission name="android.permission.ACCESS_WIFI_STATE"/>
+		<permission name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
+		<permission name="android.permission.GET_ACCOUNTS"/>
+		<permission name="android.permission.INTERNET"/>
+		<permission name="android.permission.READ_CONTACTS"/>
+		<permission name="android.permission.READ_USER_DICTIONARY"/>
+		<permission name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+		<permission name="android.permission.VIBRATE"/>
+		<permission name="android.permission.WRITE_USER_DICTIONARY"/>
+		<permission name="android.permission.GET_PACKAGE_SIZE"/>
+		<permission name="android.permission.WAKE_LOCK"/>
+		<permission name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+		<permission name="android.permission.READ_MEDIA_IMAGES"/>
+		<permission name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED"/>
+		<permission name="android.permission.RECORD_AUDIO"/>
+		<permission name="android.permission.FOREGROUND_SERVICE"/>
+		<permission name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
+		<permission name="com.bitstrips.imoji.provider.READ"/>
+		<permission name="android.permission.INTERACT_ACROSS_PROFILES"/>
+		<permission name="android.permission.QUERY_USERS"/>
+		<permission name="android.permission.CAMERA"/>
+		<permission name="android.permission.READ_EXTERNAL_STORAGE"/>
+    </privapp-permissions>
+
+</permissions>
+
