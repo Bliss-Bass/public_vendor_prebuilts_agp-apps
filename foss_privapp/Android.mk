@@ -12,6 +12,7 @@
 LOCAL_PATH := $(call my-dir)
 # ifneq ("$(wildcard vendor/foss/bin/*)","")
 ifeq ("$(USE_FOSSAPPS)","true")
+ifneq ("$(USE_MINIMAL_FOSS_APPS)","true")
 
 LOCAL_APPS := $(subst $(LOCAL_PATH)/,,$(wildcard $(LOCAL_PATH)/*$(COMMON_ANDROID_PACKAGE_SUFFIX)))
 
@@ -40,7 +41,7 @@ ALL_DEFAULT_INSTALLED_MODULES += $$(LOCAL_INSTALLED_MODULE)
 endef
 
 $(foreach a,$(LOCAL_APPS),$(eval $(call include-app,$(a))))
-
+endif
 else
 include $(call all-subdir-makefiles)
 
