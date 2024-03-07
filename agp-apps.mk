@@ -1,3 +1,7 @@
+-include vendor/agp-apps/apps.mk
+-include $(wildcard vendor/agp-apps/genapps_*.mk)
+-include vendor/agp-apps/private/ag-private-apps.mk
+
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.freeform_window_management.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.freeform_window_management.xml
 
@@ -42,3 +46,30 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/taskbar/permissions/privapp-permissions-com.farmerbb.taskbar.support.xml:system/etc/permissions/privapp-permissions-com.farmerbb.taskbar.support.xml \
     $(LOCAL_PATH)/taskbar/permissions/privapp-permissions-com.farmerbb.taskbar.xml:system/etc/permissions/privapp-permissions-com.farmerbb.taskbar.xml
 endif
+
+ifeq ($(USE_PER_DISPLAY_FOCUS),true)
+
+ifeq ($(USE_PER_DISPLAY_FOCUS_ZQY),true)
+
+PRODUCT_PACKAGES += \
+    zqyMultiClientInputMethod \
+    MultiDisplay
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.debug.multi_client_ime=com.zqy.multidisplayinput/.MultiClientInputMethod \
+    ro.sys.multi_client_ime=com.zqy.multidisplayinput/.MultiClientInputMethod
+
+else
+
+PRODUCT_PACKAGES += \
+    MultiClientInputMethod \
+    MultiDisplay
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.debug.multi_client_ime=com.example.android.multiclientinputmethod/.MultiClientInputMethod \
+    ro.sys.multi_client_ime=com.example.android.multiclientinputmethod/.MultiClientInputMethod
+
+endif
+
+endif
+
