@@ -68,6 +68,17 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/taskbar/permissions/privapp-permissions-com.farmerbb.taskbar.xml:system/etc/permissions/privapp-permissions-com.farmerbb.taskbar.xml
 endif
 
+# ScreenView
+ifeq ($(USE_SCREENVIEW),true)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/screenview/permissions/com.example.screenview-permissions.xml:system/etc/permissions/com.example.screenview-permissions.xml
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/screenview/default-permissions/com.example.screenview-default-permissions.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/default-permissions/com.example.screenview-default-permissions.xml
+
+endif
+
+
 # Gboard options
 ifeq ($(USE_GBOARD_PREBUILT),true)
 PRODUCT_COPY_FILES += \

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<exceptions>
+	<exception package="com.example.screenoverlay">
+		<permission name="android.permission.PROJECT_MEDIA" fixed="true"/>
+		<permission name="android.permission.MANAGE_MEDIA_PROJECTION" fixed="true"/>
+		<permission name="android.permission.INJECT_EVENTS" fixed="true"/>
+    </exception>
+</exceptions>
