@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<exceptions>
+
+	<exception package="org.vapor.android">
+		<permission name="android.permission.INTERNET" fixed="true"/>
+		<permission name="android.permission.WRITE_EXTERNAL_STORAGE" fixed="true"/>
+		<permission name="android.permission.ACCESS_NETWORK_STATE" fixed="true"/>
+		<permission name="android.permission.ACCESS_FINE_LOCATION" fixed="true"/>
+		<permission name="android.permission.CAMERA" fixed="true"/>
+		<permission name="android.permission.RECORD_AUDIO" fixed="true"/>
+		<permission name="android.permission.BLUETOOTH" fixed="true"/>
+		<permission name="android.permission.MODIFY_AUDIO_SETTINGS" fixed="true"/>
+		<permission name="android.permission.INTERNET" fixed="true"/>
+		<permission name="android.permission.ACCESS_NETWORK_STATE" fixed="true"/>
+		<permission name="android.permission.WRITE_EXTERNAL_STORAGE" fixed="true"/>
+		<permission name="android.permission.MANAGE_EXTERNAL_STORAGE" fixed="true"/>
+		<permission name="android.permission.QUERY_ALL_PACKAGES" fixed="true"/>
+		<permission name="android.permission.ACCESS_WIFI_STATE" fixed="true"/>
+		<permission name="android.permission.SET_WALLPAPER" fixed="true"/>
+		<permission name="android.permission.GET_TASKS" fixed="true"/>
+		<permission name="android.permission.RECEIVE_BOOT_COMPLETED" fixed="true"/>
+		<permission name="android.permission.KILL_BACKGROUND_PROCESSES" fixed="true"/>
+		<permission name="org.vapor.android.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" fixed="true"/>
+    </exception>
+
+</exceptions>
+

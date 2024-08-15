@@ -56,6 +56,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/titaniusr/permissions/app.titanius.launcher-permissions.xml:system/etc/permissions/app.titanius.launcher-permissions.xml
 endif
 
+ifeq ($(USE_VAPOR_LAUNCHER),true)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/vapor/permissions/org.vapor.android-priv-app-permissions.xml:system/etc/permissions/org.vapor.android-priv-app-permissions.xmls
+endif
+
 ifeq ($(USE_POS_TERMINAL_APP),true)
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/pos-terminal/permissions/at.smartlab.tshop-privapp-permissions.xml:system/etc/permissions/at.smartlab.tshop-privapp-permissions.xml \
