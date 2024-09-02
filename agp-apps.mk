@@ -27,8 +27,11 @@ PRODUCT_COPY_FILES += \
 endif
 
 ifeq ($(USE_BLISS_RESTRICTED_LAUNCHER),true)
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/restricted_app/permissions/com.bliss.restrictedlauncher-permissions.xml:system/etc/permissions/com.bliss.restrictedlauncher-permissions.xml
+PRODUCT_PACKAGES += \
+    BlissRestrictedLauncher \
+    whitelist-com.bliss.restrictedlauncher.xml \
+    com.bliss.restrictedlauncher-permissions.xml
+    
 endif
 
 ifeq ($(USE_BLISS_GARLIC_LAUNCHER),true)
