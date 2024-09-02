@@ -14,8 +14,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/foss_privapp/permissions/com.aurora.services.xml:system/etc/permissions/com.aurora.services.xml
 
 ifeq ($(USE_SMARTDOCK),true)
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/smart-dock/permissions/cu.axel.smartdock-permissions.xml:system/etc/permissions/cu.axel.smartdock-permissions.xml
+PRODUCT_PACKAGES += \
+    SmartDock \
+    whitelist-cu.axel.smartdock.xml \
+    cu.axel.smartdock-permissions.xml
+
 endif
 
 ifeq ($(USE_SMARTDOCK_B),true)
