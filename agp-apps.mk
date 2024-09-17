@@ -48,8 +48,10 @@ PRODUCT_COPY_FILES += \
 endif
 
 ifeq ($(USE_BLISS_CROSS_LAUNCHER),true)
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/crosslauncher/permissions/id.psw.vshlauncher-permissions.xml:system/etc/permissions/id.psw.vshlauncher-permissions.xml
+PRODUCT_PACKAGES += \
+    CrossLauncher \
+    id.psw.vshlauncher-permissions.xml
+    
 endif
 
 ifeq ($(USE_BLISS_TV_LAUNCHER),true)
