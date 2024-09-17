@@ -13,32 +13,31 @@ LOCAL_PATH := $(call my-dir)
 # ifneq ("$(wildcard vendor/foss/bin/*)","")
 ifeq ("$(USE_VAPOR_LAUNCHER)","true")
 
-LOCAL_APPS := $(subst $(LOCAL_PATH)/,,$(wildcard $(LOCAL_PATH)/*$(COMMON_ANDROID_PACKAGE_SUFFIX)))
+ifneq ($(filter %x86 %x86_64,$(TARGET_PRODUCT)),)
+VAPOR_APPNAME_SUFFIX := x86_64
+else
+VAPOR_APPNAME_SUFFIX := arm64
+endif
 
-define include-app
-include $$(CLEAR_VARS)
-
-LOCAL_LIBS := $$(shell zipinfo -1 $$(LOCAL_PATH)/$(1) | grep ^lib/ | grep -v /$$$$)
-
-LOCAL_MODULE := $$(basename $(1))
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := ETC
-LOCAL_MODULE_SUFFIX := $$(suffix $(1))
-LOCAL_BUILT_MODULE_STEM := package.apk
+include $(CLEAR_VARS)
+LOCAL_MODULE := Vapor
+LOCAL_SRC_FILES := imperador.vapor.android.$(VAPOR_APPNAME_SUFFIX).apk
 LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_SRC_FILES := $(1)
-LOCAL_DEX_PREOPT := false
-LOCAL_MODULE_RELATIVE_PATH := user_app
-LOCAL_MODULE_TARGET_ARCH := $$(call get-prebuilt-src-arch,$$(notdir $$(patsubst %/,%,$$(dir $$(LOCAL_LIBS)))))
-LOCAL_PREBUILT_JNI_LIBS := $$(addprefix @,$$(filter lib/$$(LOCAL_MODULE_TARGET_ARCH)/%,$$(LOCAL_LIBS)))
-#$$(info $$(LOCAL_MODULE) LOCAL_MODULE_TARGET_ARCH=$$(LOCAL_MODULE_TARGET_ARCH))
-#$$(info $$(LOCAL_MODULE) LOCAL_PREBUILT_JNI_LIBS=$$(LOCAL_PREBUILT_JNI_LIBS))
-include $$(BUILD_PREBUILT)
+LOCAL_MODULE_CLASS := APPS
+LOCAL_PRIVILEGED_MODULE := true
+LOCAL_PRODUCT_MODULE := true
+LOCAL_REQUIRED_MODULES := org.vapor.android-priv-app-permissions.xml
+LOCAL_OPTIONAL_USES_LIBRARIES := androidx.window.extensions androidx.window.sidecar
+include $(BUILD_PREBUILT)
 
-ALL_DEFAULT_INSTALLED_MODULES += $$(LOCAL_INSTALLED_MODULE)
-endef
-
-$(foreach a,$(LOCAL_APPS),$(eval $(call include-app,$(a))))
+include $(CLEAR_VARS)
+LOCAL_MODULE := org.vapor.android-priv-app-permissions.xml
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_PATH := $(TARGET_OUT_PRODUCT_ETC)/permissions
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_PRODUCT_MODULE := true
+include $(BUILD_PREBUILT)
 
 else
 include $(call all-subdir-makefiles)

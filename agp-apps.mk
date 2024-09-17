@@ -65,8 +65,10 @@ PRODUCT_COPY_FILES += \
 endif
 
 ifeq ($(USE_VAPOR_LAUNCHER),true)
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/vapor/permissions/org.vapor.android-priv-app-permissions.xml:system/etc/permissions/org.vapor.android-priv-app-permissions.xmls
+PRODUCT_PACKAGES += \
+    Vapor \
+    org.vapor.android-priv-app-permissions.xml
+
 endif
 
 ifeq ($(USE_POS_TERMINAL_APP),true)
