@@ -42,8 +42,8 @@ PRODUCT_PACKAGES += \
 
 # Private permissions
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/garlic_launcher/permissions/com.sagiadinos.garlic.launcher-permissions.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.sagiadinos.garlic.launcher-permissions.xml \
-    $(LOCAL_PATH)/garlic_player/permissions/com.sagiadinos.garlic.player-permissions.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.sagiadinos.garlic.player-permissions.xml
+    $(LOCAL_PATH)/garlic_launcher/permissions/com.sagiadinos.garlic.launcher-permissions.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.sagiadinos.garlic.launcher-permissions.xml \
+    $(LOCAL_PATH)/garlic_player/permissions/com.sagiadinos.garlic.player-permissions.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.sagiadinos.garlic.player-permissions.xml
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/garlic_launcher/default-permissions/com.sagiadinos.garlic.launcher-default-permissions.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/default-permissions/com.sagiadinos.garlic.launcher-default-permissions.xml \
