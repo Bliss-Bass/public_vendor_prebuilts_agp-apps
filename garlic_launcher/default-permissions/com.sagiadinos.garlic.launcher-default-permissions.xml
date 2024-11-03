@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<exceptions>
+
+	<exception package="com.sagiadinos.garlic.launcher">
+		<permission name="android.permission.WRITE_EXTERNAL_STORAGE" fixed="true"/>
+		<permission name="android.permission.MANAGE_EXTERNAL_STORAGE" fixed="true"/>
+		<permission name="android.permission.REQUEST_INSTALL_PACKAGES" fixed="true"/>
+		<permission name="android.permission.SYSTEM_ALERT_WINDOW" fixed="true"/>
+		<permission name="android.permission.INTERNET" fixed="true"/>
+		<permission name="android.permission.ACCESS_NETWORK_STATE" fixed="true"/>
+		<permission name="android.permission.ACCESS_WIFI_STATE" fixed="true"/>
+		<permission name="android.permission.CHANGE_WIFI_STATE" fixed="true"/>
+		<permission name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" fixed="true"/>
+		<permission name="android.permission.MODIFY_AUDIO_SETTINGS" fixed="true"/>
+		<permission name="android.permission.RECEIVE_BOOT_COMPLETED" fixed="true"/>
+		<permission name="android.permission.REQUEST_DELETE_PACKAGES" fixed="true"/>
+		<permission name="android.permission.WAKE_LOCK" fixed="true"/>
+		<permission name="android.permission.SCHEDULE_EXACT_ALARM" fixed="true"/>
+    </exception>
+
+</exceptions>
+
