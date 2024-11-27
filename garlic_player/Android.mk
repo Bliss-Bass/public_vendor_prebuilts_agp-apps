@@ -1,263 +1,45 @@
-LOCAL_PATH := $(my-dir)
+#
+# Copyright (C) 2011-2015 The Android-x86 Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
 
-# ifeq ("$(USE_BLISS_GARLIC_LAUNCHER)","true")
+# Minimal added packages option
+ifeq ($(USE_BLISS_GARLIC_LAUNCHER), true)
 
-include $(CLEAR_VARS)
-LOCAL_MODULE := GarlicPlayer
+LOCAL_PATH := $(call my-dir)
+LOCAL_APPS := $(subst $(LOCAL_PATH)/,,$(wildcard $(LOCAL_PATH)/*$(COMMON_ANDROID_PACKAGE_SUFFIX)))
+
+define include-app
+include $$(CLEAR_VARS)
+
+LOCAL_LIBS := $$(shell zipinfo -1 $$(LOCAL_PATH)/$(1) | grep ^lib/ | grep -v /$$$$)
+
+LOCAL_MODULE := $$(basename $(1))
 LOCAL_MODULE_TAGS := optional
-LOCAL_SRC_FILES := GarlicPlayer.apk
-LOCAL_MODULE_CLASS := APPS
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_SUFFIX := $$(suffix $(1))
+LOCAL_BUILT_MODULE_STEM := package.apk
 LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_OVERRIDES_PACKAGES := 
+LOCAL_SRC_FILES := $(1)
 LOCAL_DEX_PREOPT := false
 LOCAL_MODULE_RELATIVE_PATH := user_app
+LOCAL_MODULE_TARGET_ARCH := $$(call get-prebuilt-src-arch,$$(notdir $$(patsubst %/,%,$$(dir $$(LOCAL_LIBS)))))
+LOCAL_PREBUILT_JNI_LIBS := $$(addprefix @,$$(filter lib/$$(LOCAL_MODULE_TARGET_ARCH)/%,$$(LOCAL_LIBS)))
+#$$(info $$(LOCAL_MODULE) LOCAL_MODULE_TARGET_ARCH=$$(LOCAL_MODULE_TARGET_ARCH))
+#$$(info $$(LOCAL_MODULE) LOCAL_PREBUILT_JNI_LIBS=$$(LOCAL_PREBUILT_JNI_LIBS))
+include $$(BUILD_PREBUILT)
 
-LOCAL_PREBUILT_JNI_LIBS := \
-	lib/x86_64/libQt5AndroidExtras_x86_64.so \
-	lib/x86_64/libQt5Core_x86_64.so \
-	lib/x86_64/libQt5Gui_x86_64.so \
-	lib/x86_64/libQt5MultimediaQuick_x86_64.so \
-	lib/x86_64/libQt5MultimediaWidgets_x86_64.so \
-	lib/x86_64/libQt5Multimedia_x86_64.so \
-	lib/x86_64/libQt5Network_x86_64.so \
-	lib/x86_64/libQt5OpenGL_x86_64.so \
-	lib/x86_64/libQt5QmlModels_x86_64.so \
-	lib/x86_64/libQt5QmlWorkerScript_x86_64.so \
-	lib/x86_64/libQt5Qml_x86_64.so \
-	lib/x86_64/libQt5QuickControls2_x86_64.so \
-	lib/x86_64/libQt5QuickTemplates2_x86_64.so \
-	lib/x86_64/libQt5Quick_x86_64.so \
-	lib/x86_64/libQt5RemoteObjects_x86_64.so \
-	lib/x86_64/libQt5Sql_x86_64.so \
-	lib/x86_64/libQt5WebView_x86_64.so \
-	lib/x86_64/libQt5Widgets_x86_64.so \
-	lib/x86_64/libQt5XmlPatterns_x86_64.so \
-	lib/x86_64/libQt5Xml_x86_64.so \
-	lib/x86_64/libc++_shared.so \
-	lib/x86_64/libcrypto_1_1.so \
-	lib/x86_64/libgarlic-player_x86_64.so \
-	lib/x86_64/libplugins_audio_qtaudio_opensles_x86_64.so \
-	lib/x86_64/libplugins_bearer_qandroidbearer_x86_64.so \
-	lib/x86_64/libplugins_imageformats_qgif_x86_64.so \
-	lib/x86_64/libplugins_imageformats_qicns_x86_64.so \
-	lib/x86_64/libplugins_imageformats_qico_x86_64.so \
-	lib/x86_64/libplugins_imageformats_qjpeg_x86_64.so \
-	lib/x86_64/libplugins_imageformats_qtga_x86_64.so \
-	lib/x86_64/libplugins_imageformats_qtiff_x86_64.so \
-	lib/x86_64/libplugins_imageformats_qwbmp_x86_64.so \
-	lib/x86_64/libplugins_imageformats_qwebp_x86_64.so \
-	lib/x86_64/libplugins_mediaservice_qtmedia_android_x86_64.so \
-	lib/x86_64/libplugins_platforms_qtforandroid_x86_64.so \
-	lib/x86_64/libplugins_playlistformats_qtmultimedia_m3u_x86_64.so \
-	lib/x86_64/libplugins_qmltooling_qmldbg_debugger_x86_64.so \
-	lib/x86_64/libplugins_qmltooling_qmldbg_inspector_x86_64.so \
-	lib/x86_64/libplugins_qmltooling_qmldbg_local_x86_64.so \
-	lib/x86_64/libplugins_qmltooling_qmldbg_messages_x86_64.so \
-	lib/x86_64/libplugins_qmltooling_qmldbg_native_x86_64.so \
-	lib/x86_64/libplugins_qmltooling_qmldbg_nativedebugger_x86_64.so \
-	lib/x86_64/libplugins_qmltooling_qmldbg_preview_x86_64.so \
-	lib/x86_64/libplugins_qmltooling_qmldbg_profiler_x86_64.so \
-	lib/x86_64/libplugins_qmltooling_qmldbg_quickprofiler_x86_64.so \
-	lib/x86_64/libplugins_qmltooling_qmldbg_server_x86_64.so \
-	lib/x86_64/libplugins_qmltooling_qmldbg_tcp_x86_64.so \
-	lib/x86_64/libplugins_sqldrivers_qsqlite_x86_64.so \
-	lib/x86_64/libplugins_styles_qandroidstyle_x86_64.so \
-	lib/x86_64/libplugins_video_videonode_qtsgvideonode_android_x86_64.so \
-	lib/x86_64/libplugins_webview_qtwebview_android_x86_64.so \
-	lib/x86_64/libqml_QtMultimedia_declarative_multimedia_x86_64.so \
-	lib/x86_64/libqml_QtQml_Models.2_modelsplugin_x86_64.so \
-	lib/x86_64/libqml_QtQml_RemoteObjects_qtqmlremoteobjects_x86_64.so \
-	lib/x86_64/libqml_QtQml_StateMachine_qtqmlstatemachine_x86_64.so \
-	lib/x86_64/libqml_QtQml_WorkerScript.2_workerscriptplugin_x86_64.so \
-	lib/x86_64/libqml_QtQml_qmlplugin_x86_64.so \
-	lib/x86_64/libqml_QtQuick.2_qtquick2plugin_x86_64.so \
-	lib/x86_64/libqml_QtWebView_declarative_webview_x86_64.so \
-	lib/x86_64/libssl_1_1.so \
-	lib/x86/libQt5AndroidExtras_x86.so \
-	lib/x86/libQt5Core_x86.so \
-	lib/x86/libQt5Gui_x86.so \
-	lib/x86/libQt5MultimediaQuick_x86.so \
-	lib/x86/libQt5MultimediaWidgets_x86.so \
-	lib/x86/libQt5Multimedia_x86.so \
-	lib/x86/libQt5Network_x86.so \
-	lib/x86/libQt5OpenGL_x86.so \
-	lib/x86/libQt5QmlModels_x86.so \
-	lib/x86/libQt5QmlWorkerScript_x86.so \
-	lib/x86/libQt5Qml_x86.so \
-	lib/x86/libQt5QuickControls2_x86.so \
-	lib/x86/libQt5QuickTemplates2_x86.so \
-	lib/x86/libQt5Quick_x86.so \
-	lib/x86/libQt5RemoteObjects_x86.so \
-	lib/x86/libQt5Sql_x86.so \
-	lib/x86/libQt5WebView_x86.so \
-	lib/x86/libQt5Widgets_x86.so \
-	lib/x86/libQt5XmlPatterns_x86.so \
-	lib/x86/libQt5Xml_x86.so \
-	lib/x86/libc++_shared.so \
-	lib/x86/libcrypto_1_1.so \
-	lib/x86/libgarlic-player_x86.so \
-	lib/x86/libplugins_audio_qtaudio_opensles_x86.so \
-	lib/x86/libplugins_bearer_qandroidbearer_x86.so \
-	lib/x86/libplugins_imageformats_qgif_x86.so \
-	lib/x86/libplugins_imageformats_qicns_x86.so \
-	lib/x86/libplugins_imageformats_qico_x86.so \
-	lib/x86/libplugins_imageformats_qjpeg_x86.so \
-	lib/x86/libplugins_imageformats_qtga_x86.so \
-	lib/x86/libplugins_imageformats_qtiff_x86.so \
-	lib/x86/libplugins_imageformats_qwbmp_x86.so \
-	lib/x86/libplugins_imageformats_qwebp_x86.so \
-	lib/x86/libplugins_mediaservice_qtmedia_android_x86.so \
-	lib/x86/libplugins_platforms_qtforandroid_x86.so \
-	lib/x86/libplugins_playlistformats_qtmultimedia_m3u_x86.so \
-	lib/x86/libplugins_qmltooling_qmldbg_debugger_x86.so \
-	lib/x86/libplugins_qmltooling_qmldbg_inspector_x86.so \
-	lib/x86/libplugins_qmltooling_qmldbg_local_x86.so \
-	lib/x86/libplugins_qmltooling_qmldbg_messages_x86.so \
-	lib/x86/libplugins_qmltooling_qmldbg_native_x86.so \
-	lib/x86/libplugins_qmltooling_qmldbg_nativedebugger_x86.so \
-	lib/x86/libplugins_qmltooling_qmldbg_preview_x86.so \
-	lib/x86/libplugins_qmltooling_qmldbg_profiler_x86.so \
-	lib/x86/libplugins_qmltooling_qmldbg_quickprofiler_x86.so \
-	lib/x86/libplugins_qmltooling_qmldbg_server_x86.so \
-	lib/x86/libplugins_qmltooling_qmldbg_tcp_x86.so \
-	lib/x86/libplugins_sqldrivers_qsqlite_x86.so \
-	lib/x86/libplugins_styles_qandroidstyle_x86.so \
-	lib/x86/libplugins_video_videonode_qtsgvideonode_android_x86.so \
-	lib/x86/libplugins_webview_qtwebview_android_x86.so \
-	lib/x86/libqml_QtMultimedia_declarative_multimedia_x86.so \
-	lib/x86/libqml_QtQml_Models.2_modelsplugin_x86.so \
-	lib/x86/libqml_QtQml_RemoteObjects_qtqmlremoteobjects_x86.so \
-	lib/x86/libqml_QtQml_StateMachine_qtqmlstatemachine_x86.so \
-	lib/x86/libqml_QtQml_WorkerScript.2_workerscriptplugin_x86.so \
-	lib/x86/libqml_QtQml_qmlplugin_x86.so \
-	lib/x86/libqml_QtQuick.2_qtquick2plugin_x86.so \
-	lib/x86/libqml_QtWebView_declarative_webview_x86.so \
-	lib/x86/libssl_1_1.so \
-	lib/arm64-v8a/libQt5AndroidExtras_arm64-v8a.so \
-	lib/arm64-v8a/libQt5Core_arm64-v8a.so \
-	lib/arm64-v8a/libQt5Gui_arm64-v8a.so \
-	lib/arm64-v8a/libQt5MultimediaQuick_arm64-v8a.so \
-	lib/arm64-v8a/libQt5MultimediaWidgets_arm64-v8a.so \
-	lib/arm64-v8a/libQt5Multimedia_arm64-v8a.so \
-	lib/arm64-v8a/libQt5Network_arm64-v8a.so \
-	lib/arm64-v8a/libQt5OpenGL_arm64-v8a.so \
-	lib/arm64-v8a/libQt5QmlModels_arm64-v8a.so \
-	lib/arm64-v8a/libQt5QmlWorkerScript_arm64-v8a.so \
-	lib/arm64-v8a/libQt5Qml_arm64-v8a.so \
-	lib/arm64-v8a/libQt5QuickControls2_arm64-v8a.so \
-	lib/arm64-v8a/libQt5QuickTemplates2_arm64-v8a.so \
-	lib/arm64-v8a/libQt5Quick_arm64-v8a.so \
-	lib/arm64-v8a/libQt5RemoteObjects_arm64-v8a.so \
-	lib/arm64-v8a/libQt5Sql_arm64-v8a.so \
-	lib/arm64-v8a/libQt5WebView_arm64-v8a.so \
-	lib/arm64-v8a/libQt5Widgets_arm64-v8a.so \
-	lib/arm64-v8a/libQt5XmlPatterns_arm64-v8a.so \
-	lib/arm64-v8a/libQt5Xml_arm64-v8a.so \
-	lib/arm64-v8a/libc++_shared.so \
-	lib/arm64-v8a/libcrypto_1_1.so \
-	lib/arm64-v8a/libgarlic-player_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_audio_qtaudio_opensles_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_bearer_qandroidbearer_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_imageformats_qgif_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_imageformats_qicns_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_imageformats_qico_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_imageformats_qjpeg_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_imageformats_qtga_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_imageformats_qtiff_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_imageformats_qwbmp_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_imageformats_qwebp_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_mediaservice_qtmedia_android_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_platforms_qtforandroid_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_playlistformats_qtmultimedia_m3u_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_qmltooling_qmldbg_debugger_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_qmltooling_qmldbg_inspector_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_qmltooling_qmldbg_local_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_qmltooling_qmldbg_messages_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_qmltooling_qmldbg_native_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_qmltooling_qmldbg_nativedebugger_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_qmltooling_qmldbg_preview_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_qmltooling_qmldbg_profiler_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_qmltooling_qmldbg_quickprofiler_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_qmltooling_qmldbg_server_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_qmltooling_qmldbg_tcp_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_sqldrivers_qsqlite_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_styles_qandroidstyle_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_video_videonode_qtsgvideonode_android_arm64-v8a.so \
-	lib/arm64-v8a/libplugins_webview_qtwebview_android_arm64-v8a.so \
-	lib/arm64-v8a/libqml_QtMultimedia_declarative_multimedia_arm64-v8a.so \
-	lib/arm64-v8a/libqml_QtQml_Models.2_modelsplugin_arm64-v8a.so \
-	lib/arm64-v8a/libqml_QtQml_RemoteObjects_qtqmlremoteobjects_arm64-v8a.so \
-	lib/arm64-v8a/libqml_QtQml_StateMachine_qtqmlstatemachine_arm64-v8a.so \
-	lib/arm64-v8a/libqml_QtQml_WorkerScript.2_workerscriptplugin_arm64-v8a.so \
-	lib/arm64-v8a/libqml_QtQml_qmlplugin_arm64-v8a.so \
-	lib/arm64-v8a/libqml_QtQuick.2_qtquick2plugin_arm64-v8a.so \
-	lib/arm64-v8a/libqml_QtWebView_declarative_webview_arm64-v8a.so \
-	lib/arm64-v8a/libssl_1_1.so \
-	lib/armeabi-v7a/libQt5AndroidExtras_armeabi-v7a.so \
-	lib/armeabi-v7a/libQt5Core_armeabi-v7a.so \
-	lib/armeabi-v7a/libQt5Gui_armeabi-v7a.so \
-	lib/armeabi-v7a/libQt5MultimediaQuick_armeabi-v7a.so \
-	lib/armeabi-v7a/libQt5MultimediaWidgets_armeabi-v7a.so \
-	lib/armeabi-v7a/libQt5Multimedia_armeabi-v7a.so \
-	lib/armeabi-v7a/libQt5Network_armeabi-v7a.so \
-	lib/armeabi-v7a/libQt5OpenGL_armeabi-v7a.so \
-	lib/armeabi-v7a/libQt5QmlModels_armeabi-v7a.so \
-	lib/armeabi-v7a/libQt5QmlWorkerScript_armeabi-v7a.so \
-	lib/armeabi-v7a/libQt5Qml_armeabi-v7a.so \
-	lib/armeabi-v7a/libQt5QuickControls2_armeabi-v7a.so \
-	lib/armeabi-v7a/libQt5QuickTemplates2_armeabi-v7a.so \
-	lib/armeabi-v7a/libQt5Quick_armeabi-v7a.so \
-	lib/armeabi-v7a/libQt5RemoteObjects_armeabi-v7a.so \
-	lib/armeabi-v7a/libQt5Sql_armeabi-v7a.so \
-	lib/armeabi-v7a/libQt5WebView_armeabi-v7a.so \
-	lib/armeabi-v7a/libQt5Widgets_armeabi-v7a.so \
-	lib/armeabi-v7a/libQt5XmlPatterns_armeabi-v7a.so \
-	lib/armeabi-v7a/libQt5Xml_armeabi-v7a.so \
-	lib/armeabi-v7a/libc++_shared.so \
-	lib/armeabi-v7a/libcrypto_1_1.so \
-	lib/armeabi-v7a/libgarlic-player_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_audio_qtaudio_opensles_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_bearer_qandroidbearer_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_imageformats_qgif_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_imageformats_qicns_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_imageformats_qico_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_imageformats_qjpeg_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_imageformats_qtga_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_imageformats_qtiff_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_imageformats_qwbmp_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_imageformats_qwebp_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_mediaservice_qtmedia_android_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_platforms_qtforandroid_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_playlistformats_qtmultimedia_m3u_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_qmltooling_qmldbg_debugger_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_qmltooling_qmldbg_inspector_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_qmltooling_qmldbg_local_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_qmltooling_qmldbg_messages_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_qmltooling_qmldbg_native_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_qmltooling_qmldbg_nativedebugger_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_qmltooling_qmldbg_preview_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_qmltooling_qmldbg_profiler_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_qmltooling_qmldbg_quickprofiler_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_qmltooling_qmldbg_server_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_qmltooling_qmldbg_tcp_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_sqldrivers_qsqlite_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_styles_qandroidstyle_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_video_videonode_qtsgvideonode_android_armeabi-v7a.so \
-	lib/armeabi-v7a/libplugins_webview_qtwebview_android_armeabi-v7a.so \
-	lib/armeabi-v7a/libqml_QtMultimedia_declarative_multimedia_armeabi-v7a.so \
-	lib/armeabi-v7a/libqml_QtQml_Models.2_modelsplugin_armeabi-v7a.so \
-	lib/armeabi-v7a/libqml_QtQml_RemoteObjects_qtqmlremoteobjects_armeabi-v7a.so \
-	lib/armeabi-v7a/libqml_QtQml_StateMachine_qtqmlstatemachine_armeabi-v7a.so \
-	lib/armeabi-v7a/libqml_QtQml_WorkerScript.2_workerscriptplugin_armeabi-v7a.so \
-	lib/armeabi-v7a/libqml_QtQml_qmlplugin_armeabi-v7a.so \
-	lib/armeabi-v7a/libqml_QtQuick.2_qtquick2plugin_armeabi-v7a.so \
-	lib/armeabi-v7a/libqml_QtWebView_declarative_webview_armeabi-v7a.so \
-	lib/armeabi-v7a/libssl_1_1.so \
-			
-include $(BUILD_PREBUILT)
+ALL_DEFAULT_INSTALLED_MODULES += $$(LOCAL_INSTALLED_MODULE)
+endef
 
-# else
-# include $(call all-subdir-makefiles)
+$(foreach a,$(LOCAL_APPS),$(eval $(call include-app,$(a))))
 
-# endif
-
+else
+include $(call all-subdir-makefiles)
+# END Minimal added packages
+endif
