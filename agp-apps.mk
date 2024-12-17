@@ -86,7 +86,7 @@ endif
 
 ifeq ($(USE_TITANIUS_LAUNCHER),true)
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/titaniusr/permissions/app.titanius.launcher-permissions.xml:system/etc/permissions/app.titanius.launcher-permissions.xml
+    $(LOCAL_PATH)/titanius/permissions/app.titanius.launcher-permissions.xml:system/etc/permissions/app.titanius.launcher-permissions.xml
 endif
 
 ifeq ($(USE_VAPOR_LAUNCHER),true)
