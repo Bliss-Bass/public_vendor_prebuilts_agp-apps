@@ -21,6 +21,14 @@ PRODUCT_PACKAGES += \
 
 endif
 
+ifeq ($(USE_DROID_VNC_PLATFORM),true)
+PRODUCT_PACKAGES += \
+    droidvnc-ng-platform \
+    whitelist-net.christianbeier.droidvnc_ng.xml \
+    net.christianbeier.droidvnc_ng-permissions.xml
+
+endif
+
 ifeq ($(USE_SMARTDOCK_B),true)
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/smart-dock-b/permissions/cu.axel.smartdock-permissions.xml:system/etc/permissions/cu.axel.smartdock-permissions.xml
