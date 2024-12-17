@@ -51,6 +51,22 @@ PRODUCT_COPY_FILES += \
 
 endif
 
+ifeq ($(USE_AURORA_STORE),true)
+
+PRODUCT_PACKAGES += \
+	AuroraServices \
+
+# Private permissions
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/AuroraServices/permissions/com.aurora.services-permissions.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.aurora.services-permissions.xml \
+    
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/AuroraServices/default-permissions/com.aurora.services-default-permissions.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/default-permissions/com.aurora.services-default-permissions.xml \
+   
+endif
+
+
+
 ifeq ($(USE_BLISS_GAME_MODE_LAUNCHER),true)
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/game_mode/permissions/com.sinu.molla-permissions.xml:system/etc/permissions/com.sinu.molla-permissions.xml

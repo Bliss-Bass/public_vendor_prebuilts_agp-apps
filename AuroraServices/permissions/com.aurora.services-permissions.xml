@@ -1,0 +1,16 @@
+<permissions>
+
+	<privapp-permissions package="com.aurora.services">
+		<permission name="android.permission.FOREGROUND_SERVICE"/>
+		<permission name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+		<permission name="android.permission.READ_EXTERNAL_STORAGE"/>
+		<permission name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+		<permission name="android.permission.QUERY_ALL_PACKAGES"/>
+		<permission name="android.permission.INSTALL_PACKAGES"/>
+		<permission name="android.permission.DELETE_PACKAGES"/>
+		<permission name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+		<permission name="android.permission.REQUEST_DELETE_PACKAGES"/>
+    </privapp-permissions>
+
+</permissions>
+
