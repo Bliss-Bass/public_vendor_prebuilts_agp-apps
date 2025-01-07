@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<exceptions>
+
+	<exception package="com.bliss.multidisplaysettings">
+		<permission name="android.permission.MODIFY_USER_PREFERRED_DISPLAY_MODE" fixed="true"/>
+		<permission name="android.permission.WRITE_SECURE_SETTINGS" fixed="true"/>
+		<permission name="android.permission.SET_ORIENTATION" fixed="true"/>
+    </exception>
+
+</exceptions>
+

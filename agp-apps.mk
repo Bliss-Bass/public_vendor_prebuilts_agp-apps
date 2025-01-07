@@ -29,6 +29,15 @@ PRODUCT_PACKAGES += \
 
 endif
 
+ifeq ($(USE_MDS_PLATFORM),true)
+PRODUCT_PACKAGES += \
+    multidisplaysettings \
+    whitelist-com.bliss.multidisplaysettings.xml \
+    com.bliss.multidisplaysettings-default-permissions.xml \
+    com.bliss.multidisplaysettings-permissions.xml
+
+endif
+
 ifeq ($(USE_SMARTDOCK_B),true)
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/smart-dock-b/permissions/cu.axel.smartdock-permissions.xml:system/etc/permissions/cu.axel.smartdock-permissions.xml

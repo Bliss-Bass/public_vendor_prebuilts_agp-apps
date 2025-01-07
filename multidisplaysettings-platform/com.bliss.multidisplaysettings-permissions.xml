@@ -1,0 +1,10 @@
+<permissions>
+
+	<privapp-permissions package="com.bliss.multidisplaysettings">
+		<permission name="android.permission.MODIFY_USER_PREFERRED_DISPLAY_MODE"/>
+		<permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+		<permission name="android.permission.SET_ORIENTATION"/>
+    </privapp-permissions>
+
+</permissions>
+
