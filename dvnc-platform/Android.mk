@@ -14,9 +14,19 @@ LOCAL_PATH := $(call my-dir)
 
 ifeq ($(USE_DROID_VNC_PLATFORM),true)
 
+ifneq ($(filter %x86_64,$(TARGET_PRODUCT)),)
+  APPNAME_SUFFIX := x86_64
+else ifneq ($(filter %x86,$(TARGET_PRODUCT)),)
+  APPNAME_SUFFIX := x86
+else ifneq ($(filter %arm64,$(TARGET_PRODUCT)),)
+  APPNAME_SUFFIX := arm64
+else
+  APPNAME_SUFFIX := armv7
+endif
+
 include $(CLEAR_VARS)
 LOCAL_MODULE := droidvnc-ng-platform
-LOCAL_SRC_FILES := droidvnc-ng-platform.apk
+LOCAL_SRC_FILES := droidvnc-ng-platform.$(APPNAME_SUFFIX).apk
 LOCAL_CERTIFICATE := platform
 LOCAL_MODULE_CLASS := APPS
 LOCAL_PRIVILEGED_MODULE := true
