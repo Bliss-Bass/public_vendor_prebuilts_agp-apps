@@ -13,6 +13,19 @@ endif
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/foss_privapp/permissions/com.aurora.services.xml:system/etc/permissions/com.aurora.services.xml
 
+
+ifeq ($(USE_ANDROID_AUTO),true)
+PRODUCT_PACKAGES += \
+    AndroidAuto
+
+endif
+
+ifeq ($(USE_BLISS_BOOT_CONFIG),true)
+PRODUCT_PACKAGES += \
+    com.bliss.bootconfig
+
+endif
+
 ifeq ($(USE_SMARTDOCK),true)
 PRODUCT_PACKAGES += \
     SmartDock \
@@ -194,12 +207,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 endif
 endif
-
-endif
-
-ifeq ($(USE_ANDROID_AUTO),true)
-PRODUCT_PACKAGES += \
-    AndroidAuto
 
 endif
 
