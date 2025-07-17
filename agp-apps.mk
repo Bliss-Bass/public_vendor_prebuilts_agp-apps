@@ -20,6 +20,20 @@ PRODUCT_PACKAGES += \
 
 endif
 
+ifeq ($(USE_FDEX11_PLATFORM),true)
+PRODUCT_PACKAGES += \
+    fdex11 \
+    # FDELinuxAppLauncher \
+    # FdePreInstaller
+
+endif
+
+ifeq ($(USE_BVNC_PLATFORM),true)
+PRODUCT_PACKAGES += \
+    bVNC
+
+endif
+
 ifeq ($(USE_BLISS_BOOT_CONFIG),true)
 PRODUCT_PACKAGES += \
     com.bliss.bootconfig

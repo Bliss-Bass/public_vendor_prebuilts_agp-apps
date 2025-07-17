@@ -1,0 +1,17 @@
+<permissions>
+
+	<privapp-permissions package="com.fde.x11">
+		<permission name="android.permission.FOREGROUND_SERVICE"/>
+		<permission name="android.permission.INTERACT_ACROSS_USERS"/>
+		<permission name="android.permission.INTERNET"/>
+		<permission name="android.permission.MANAGE_ACTIVITY_TASKS"/>
+		<permission name="android.permission.REORDER_TASKS"/>
+		<permission name="android.permission.MANAGE_ACTIVITY_STACKS"/>
+		<permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+		<permission name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+		<permission name="android.permission.POST_NOTIFICATIONS"/>
+		<permission name="android.permission.BROADCAST_STICKY"/>
+    </privapp-permissions>
+
+</permissions>
+

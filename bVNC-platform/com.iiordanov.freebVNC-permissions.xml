@@ -1,0 +1,10 @@
+<permissions>
+
+	<privapp-permissions package="com.iiordanov.freebVNC">
+		<permission name="android.permission.INTERNET"/>
+		<permission name="android.permission.VIBRATE"/>
+		<permission name="android.permission.ACCESS_NETWORK_STATE"/>
+    </privapp-permissions>
+
+</permissions>
+
