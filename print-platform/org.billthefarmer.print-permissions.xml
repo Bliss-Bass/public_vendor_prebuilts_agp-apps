@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+
+	<privapp-permissions package="org.billthefarmer.print">
+		<permission name="android.permission.INTERNET"/>
+    </privapp-permissions>
+
+</permissions>
+
