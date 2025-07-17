@@ -12,40 +12,21 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(USE_DROID_VNC_PLATFORM),true)
-
-ifneq ($(filter %x86_64,$(TARGET_PRODUCT)),)
-  APPNAME_SUFFIX := universal
-else ifneq ($(filter %x86,$(TARGET_PRODUCT)),)
-  APPNAME_SUFFIX := x86
-else ifneq ($(filter %arm64,$(TARGET_PRODUCT)),)
-  APPNAME_SUFFIX := arm64
-else
-  APPNAME_SUFFIX := armv7
-endif
+ifeq ($(USE_PDFVIEWER_PLATFORM),true)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := droidvnc-ng-platform
-LOCAL_SRC_FILES := droidvnc-ng-platform.$(APPNAME_SUFFIX).apk
+LOCAL_MODULE := PdfViewer
+LOCAL_SRC_FILES := PdfViewer.apk
 LOCAL_CERTIFICATE := platform
 LOCAL_MODULE_CLASS := APPS
 LOCAL_PRIVILEGED_MODULE := true
 LOCAL_PRODUCT_MODULE := true
-LOCAL_REQUIRED_MODULES := net.christianbeier.droidvnc_ng-permissions.xml whitelist-net.christianbeier.droidvnc_ng.xml
+LOCAL_REQUIRED_MODULES := whitelist-app.grapheneos.pdfviewer.xml
 LOCAL_OPTIONAL_USES_LIBRARIES := androidx.window.extensions androidx.window.sidecar
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := net.christianbeier.droidvnc_ng-permissions.xml
-LOCAL_MODULE_CLASS := ETC
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_PATH := $(TARGET_OUT_PRODUCT_ETC)/permissions
-LOCAL_SRC_FILES := $(LOCAL_MODULE)
-LOCAL_PRODUCT_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE := whitelist-net.christianbeier.droidvnc_ng.xml
+LOCAL_MODULE := whitelist-app.grapheneos.pdfviewer.xml
 LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_PATH := $(TARGET_OUT_PRODUCT_ETC)/sysconfig

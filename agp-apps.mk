@@ -38,6 +38,21 @@ PRODUCT_PACKAGES += \
 
 endif
 
+ifeq ($(USE_PDFVIEWER_PLATFORM),true)
+PRODUCT_PACKAGES += \
+    PdfViewer \
+    whitelist-app.grapheneos.pdfviewer.xml
+
+endif
+
+ifeq ($(USE_PRINT_PLATFORM),true)
+PRODUCT_PACKAGES += \
+    print-platform \
+    org.billthefarmer.print-permissions.xml \
+    whitelist-org.billthefarmer.print.xml
+
+endif
+
 ifeq ($(USE_SMARTDOCK_B),true)
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/smart-dock-b/permissions/cu.axel.smartdock-permissions.xml:system/etc/permissions/cu.axel.smartdock-permissions.xml
