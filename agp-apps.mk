@@ -40,11 +40,17 @@ PRODUCT_PACKAGES += \
 
 endif
 
-ifeq ($(USE_SMARTDOCK),true)
+ifeq ($(USE_SMARTDOCK_PB),true)
 PRODUCT_PACKAGES += \
-    SmartDock \
+    SmartDock_prebuilt \
     whitelist-cu.axel.smartdock.xml \
     cu.axel.smartdock-permissions.xml
+
+endif
+
+ifeq ($(USE_SMARTDOCK),true)
+PRODUCT_PACKAGES += \
+    SmartDock
 
 endif
 

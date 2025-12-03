@@ -15,7 +15,7 @@ LOCAL_PATH := $(call my-dir)
 ifeq ($(USE_SMARTDOCK),true)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := SmartDock
+LOCAL_MODULE := SmartDock_prebuilt
 LOCAL_SRC_FILES := SmartDock.apk
 LOCAL_CERTIFICATE := platform
 LOCAL_MODULE_CLASS := APPS
