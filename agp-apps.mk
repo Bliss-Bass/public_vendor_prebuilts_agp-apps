@@ -52,6 +52,8 @@ ifeq ($(USE_SMARTDOCK),true)
 PRODUCT_PACKAGES += \
     SmartDock
 
+-include vendor/agp-apps/smartdock/SmartDock.mk
+
 endif
 
 ifeq ($(USE_DROID_VNC_PLATFORM),true)
